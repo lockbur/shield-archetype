@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jinyinwu.lender.dao.RoleMapper">
+
+
+    <insert id="insert" parameterType="com.jinyinwu.lender.model.Role" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO tb_role
+        (
+          name,description,created_by,created_time,modified_time
+        )
+        VALUES
+        (
+         #{name}, #{description},#{createdBy},now(),now()
+        )
+    </insert>
+
+    <!-- 通过用户ID查询对应角色 -->
+    <select id="findRolesByEmpId" resultType="com.jinyinwu.lender.model.Role">
+        SELECT
+         tr.*
+        FROM tb_role tr
+        INNER JOIN tb_emp_role ter ON tr.id = ter.role_id
+        WHERE ter.emp_id = #{empId}
+    </select>
+
+    <select id="findAll" resultType="com.jinyinwu.lender.model.Role">
+        SELECT
+        tr.*
+        FROM tb_role tr
+    </select>
+
+    <select id="findById" resultType="com.jinyinwu.lender.model.Role">
+        SELECT
+        tr.*
+        FROM
+         tb_role tr
+        WHERE
+        tr.id=#{id}
+    </select>
+
+    <update id="update" parameterType="com.jinyinwu.lender.model.Role" >
+        UPDATE
+        tb_role
+        <set>
+            <if test="name != null" >
+                name = #{name},
+            </if>
+            <if test="description != null" >
+                description = #{description},
+            </if>
+            modified_time = now()
+        </set>
+        WHERE
+          id = #{id}
+    </update>
+
+</mapper>
