@@ -7,7 +7,7 @@
             <groupId>pl.codeleak</groupId>
             <artifactId>spring-mvc-quickstart</artifactId>
             <version>1.0.0</version>
-            <repository>https://github.com/kolorobot/spring-mvc-quickstart-archetype</repository>
+            <repository>https://github.com/lockbur/shield-archetype</repository>
             <description>Shield-archetype Quickstart Maven Archetype</description>
         </archetype>
     </archetypes>
